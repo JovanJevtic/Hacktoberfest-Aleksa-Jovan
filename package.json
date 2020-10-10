@@ -1,0 +1,21 @@
+{
+  "name": "hacktoberfest-jovan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon server.js --prefix serverSide",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JovanJevtic/Hacktoberfest-Aleksa-Jovan.git"
+  },
+  "author": "Aleksa & Jovan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JovanJevtic/Hacktoberfest-Aleksa-Jovan/issues"
+  },
+  "homepage": "https://github.com/JovanJevtic/Hacktoberfest-Aleksa-Jovan#readme"
+}
