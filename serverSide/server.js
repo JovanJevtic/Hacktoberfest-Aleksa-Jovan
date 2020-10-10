@@ -30,6 +30,5 @@ app.listen(PORT, (err) => {
     console.log('--There was an error');
     process.exit(1);
   }
-  
   console.log('--Connected successfuly');
 });
