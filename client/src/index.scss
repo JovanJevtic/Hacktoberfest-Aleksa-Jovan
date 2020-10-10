@@ -1,0 +1,11 @@
+//! IMPORT ALL FILES
+@import './config';
+@import './components/UI/header';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
