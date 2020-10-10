@@ -31,4 +31,7 @@ app.listen(PORT, (err) => {
     process.exit(1);
   }
   console.log('--Connected successfuly');
+  
+  // Database connection
+  require('./database/database'); 
 });
