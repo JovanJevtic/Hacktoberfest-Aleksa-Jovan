@@ -1,11 +1,16 @@
-import React from 'react';
+import React from 'react'
+
+//* UI Components import
+import Header from './components/UI/Header'
+
+//* API Components import
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello Kurcina</h1>
+      <Header />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
