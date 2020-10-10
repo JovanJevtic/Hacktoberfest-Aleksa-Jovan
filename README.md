@@ -1,1 +1,1 @@
-Ridmi
+#znaci kurcina
