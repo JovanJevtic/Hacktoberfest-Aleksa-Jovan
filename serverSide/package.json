@@ -4,7 +4,7 @@
   "description": "Server-side",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js"
   },
   "author": "Aleksa i Jovan",
   "license": "MIT",

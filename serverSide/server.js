@@ -2,6 +2,8 @@ const express = require('express');
 const dotenv = require('dotenv');
 const body_parser = require('body-parser');
 const router = require('./routing/route');
+const mongoose = require('mongoose');
+const db_connection = require('./database/database');
 
 // App init
 const app = express();
@@ -19,7 +21,7 @@ dotenv.config({
 // Routing
 app.get('/', (req, res) => {
   res.send('Home');
-  console.log('---Home route');
+  console.log('Home route');
 });
 
 // Port listening
@@ -27,11 +29,11 @@ const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, (err) => {
   if (err) {
-    console.log('--There was an error');
+    console.log('There was an error');
     process.exit(1);
   }
-  console.log('--Connected successfuly');
+  console.log('Connected successfuly');
   
   // Database connection
-  require('./database/database'); 
+  require('./database/database');
 });
