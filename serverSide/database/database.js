@@ -1,8 +1,9 @@
-const MongoClient = require('mongodb').MongoClient;
-const URI = "mongodb+srv://Hacktoberfest2020:5g1Muvea12@hacktoberfest2020.u8z1q.mongodb.net/Hacktoberfest2020?retryWrites=true&w=majority";
-const client = new MongoClient(URI, { useNewUrlParser: true }, { useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+const dotenv = require('dotenv').config()
+const mongoose = require('mongoose');
+
+//? DATABASE CONNECTION
+mongoose.connect( process.env.URI , {useUnifiedTopology: true, useNewUrlParser: true});
+const db = mongoose.connection;
+
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to Database'));
