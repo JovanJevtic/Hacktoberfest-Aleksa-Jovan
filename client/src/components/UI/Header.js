@@ -80,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
     appBar: {
-      backgroundColor: '#222831'
+      backgroundColor: '#202020',
     }
 }));
 
