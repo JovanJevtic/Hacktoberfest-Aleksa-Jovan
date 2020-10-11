@@ -11,7 +11,6 @@ const app = express();
 // Middlewares
 app.use(express.json());
 app.use(body_parser.json());
-app.use('/post', router);
 
 // Dotenv config
 dotenv.config({
@@ -19,10 +18,7 @@ dotenv.config({
 });
 
 // Routing
-app.get('/', (req, res) => {
-  res.send('Home');
-  console.log('Home route');
-});
+app.use('/', router);
 
 // Port listening
 const PORT = process.env.PORT || 5000;

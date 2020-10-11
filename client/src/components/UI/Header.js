@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
       transition: theme.transitions.create('width'),
       width: '100%',
       [theme.breakpoints.up('md')]: {
-        width: '20ch',
+        width: '50ch',
       },
     },
     sectionDesktop: {
@@ -79,10 +79,13 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
       },
     },
+    appBar: {
+      backgroundColor: '#222831'
+    }
 }));
 
 const Header = () => {
-    const classes = useStyles();
+  const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -165,7 +168,7 @@ const Header = () => {
 
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar className={classes.appBar} position="fixed" color="primary"> 
         <Toolbar>
           <IconButton
             edge="start"
@@ -175,9 +178,10 @@ const Header = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Memer
+          <Typography className={classes.title} variant="h5" noWrap>
+            Meme!t
           </Typography>
+          <div className={classes.grow} />
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
