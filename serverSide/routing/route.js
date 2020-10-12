@@ -49,9 +49,10 @@ router.get('/:id', getPost, (req, res) => {
 
 //? UPDATING POST; /posts/:id - PATCH
 router.patch('/:id', getPost, async (req, res) => {
-  if (req.body.title != null && req.body.img_src != null) {
-    res.post.title = req.body.name
-    res.post.img_src = req.body.img_src
+  if (req.body.title != null) {
+    res.post.title = req.body.title
+    req.body.description = req.body.description
+    req.body.img_src
   }
   try {
     const updatedPost = await res.post.save();
