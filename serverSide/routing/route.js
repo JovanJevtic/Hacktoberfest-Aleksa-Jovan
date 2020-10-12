@@ -17,7 +17,9 @@ router.get('/', async (req, res) => {
 //? POST A POST; /posts - POST
 router.post('/', async (req, res) => {
   const post = new Post({
-    name: req.body.name
+    title: req.body.title,
+    description: req.body.description,
+    img_src: req.body.img_src
   });
   try {
     const newPost = await post.save()
@@ -47,8 +49,10 @@ router.get('/:id', getPost, (req, res) => {
 
 //? UPDATING POST; /posts/:id - PATCH
 router.patch('/:id', getPost, async (req, res) => {
-  if (req.body.name != null) {
-    res.post.name = req.body.name
+  if (req.body.title != null) {
+    res.post.title = req.body.title
+    req.body.description = req.body.description
+    req.body.img_src
   }
   try {
     const updatedPost = await res.post.save();
