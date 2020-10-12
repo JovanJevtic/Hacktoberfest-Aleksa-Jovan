@@ -16,8 +16,8 @@ const posts_scheme = mongoose.Schema({
   },
   img_src: {
     data: Buffer,
-    contentType: String
-  }
+    contentType: String,
+  }     
 });
 
 module.exports = mongoose.model('Post', posts_scheme);
