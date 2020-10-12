@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 });
 app.use('/api/posts', postsRouter);
 
+console.log(process.env.NODE_ENV)
 
 //? Static files serve
 if (process.env.NODE_ENV === 'production') {
