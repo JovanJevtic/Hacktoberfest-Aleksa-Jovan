@@ -16,13 +16,13 @@ dotenv.config({
   path: './.env'
 });
 
+const enviorment = process.env.NODE_ENV;
+
 // Routing
 app.get('/', (req, res) => {
-  res.send('API is running....');
+  res.send(`API is running.... in ${enviorment} mode`);
 });
 app.use('/api/posts', postsRouter);
-
-console.log(process.env.NODE_ENV)
 
 //? Static files serve
 if (process.env.NODE_ENV === 'production') {
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
   )
 } else {
   app.get('/', (req, res) => {
-    res.send('API is running....')
+    res.send(`API is running.... in ${enviorment} mode`)
   })
 }
 
@@ -49,3 +49,4 @@ app.listen(PORT, (err) => {
   // Database connection
   require('./database/database');
 });
+
