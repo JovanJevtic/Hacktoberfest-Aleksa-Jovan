@@ -1,9 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const body_parser = require('body-parser');
-const router = require('./routing/route');
-const mongoose = require('mongoose');
-const db_connection = require('./database/database');
+const postsRouter = require('./routing/posts');
 const path = require('path');
 
 // App init
@@ -19,13 +17,22 @@ dotenv.config({
 });
 
 // Routing
-app.use('/', router);
+app.get('/', (req, res) => {
+  res.send('API is running....');
+});
+app.use('/api/posts', postsRouter);
 
+
+//? Static files serve
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('../client/build'))
+  app.use(express.static(path.join(__dirname, '/client/build')))
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, '../client/build/index.html'))
+  app.get('*', (req, res) =>
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+  )
+} else {
+  app.get('/', (req, res) => {
+    res.send('API is running....')
   })
 }
 
