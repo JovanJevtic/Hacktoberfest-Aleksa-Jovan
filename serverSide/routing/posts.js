@@ -1,5 +1,32 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './uploads/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, Date.now() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5
+  },
+  fileFilter: fileFilter
+});
 
 const Post = require('../models/Post');
 
@@ -15,11 +42,11 @@ router.get('/', async (req, res) => {
 
 
 //? POST A POST; /posts - POST
-router.post('/', async (req, res) => {
+router.post('/', upload.single('memeImage'), async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
-    img_src: req.body.img_src
+    memeImage: req.file.path
   });
   try {
     const newPost = await post.save()

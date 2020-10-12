@@ -14,10 +14,10 @@ const posts_scheme = mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  img_src: {
-    data: Buffer,
-    contentType: String,
-  }     
+  memeImage: { 
+    type: String, 
+    required: true 
+  }
 });
 
 module.exports = mongoose.model('Post', posts_scheme);

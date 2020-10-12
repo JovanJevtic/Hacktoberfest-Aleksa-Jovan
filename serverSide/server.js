@@ -18,6 +18,7 @@ app.use('/api/posts', postsRouter);
 
 //? Static files serve
 let dirname = path.resolve()
+app.use('/uploads', express.static(path.join(dirname, '/uploads')))
 const environment = process.env.NODE_ENV;
 
 if (environment === 'production') {
