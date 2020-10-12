@@ -1,43 +1,39 @@
 const express = require('express');
-const dotenv = require('dotenv');
+const dotenv = require('dotenv').config({ path: './.env' });
 const body_parser = require('body-parser');
-const postsRouter = require('./routing/posts');
 const path = require('path');
 
-// App init
+//? Routes Import
+const postsRouter = require('./routing/posts');
+
+//? App init
 const app = express();
 
-// Middlewares
+//? Middlewares
 app.use(express.json());
 app.use(body_parser.json());
 
-// Dotenv config
-dotenv.config({
-  path: './.env'
-});
-
-const enviorment = process.env.NODE_ENV;
-
-// Routing
-app.get('/', (req, res) => {
-  res.send(`API is running.... in ${enviorment} mode`);
-});
+//? Routing
 app.use('/api/posts', postsRouter);
 
 //? Static files serve
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/build')))
+let dirname = path.resolve()
+const environment = process.env.NODE_ENV;
+
+if (environment === 'production') {
+  app.use(express.static(path.join(dirname, '/client/build')));
 
   app.get('*', (req, res) =>
-    res.sendFile(path.resolve(__dirname, '../client', 'build', 'index.html'))
+    res.sendFile(path.resolve(dirname, 'client', 'build', 'index.html'))
   )
 } else {
   app.get('/', (req, res) => {
-    res.send(`API is running.... in ${enviorment} mode`)
+    res.send(`API is running.... in ${environment} mode`)
   })
 }
 
-// Port listening
+
+//? Port listening
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, (err) => {
@@ -45,8 +41,8 @@ app.listen(PORT, (err) => {
     console.log('There was an error');
     process.exit(1);
   }
-  
-  // Database connection
+
+  //* Database connection
   require('./database/database');
 });
 
