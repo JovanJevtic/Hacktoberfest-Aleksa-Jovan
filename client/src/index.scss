@@ -1,6 +1,7 @@
 //! IMPORT ALL FILES
 @import './config';
 @import './components/UI/uiComponents';
+@import './components/Api/apiComponents';
 
 * {
   margin: 0;
@@ -9,3 +10,6 @@
   font-family: 'Roboto', sans-serif;
 }
 
+img {
+  max-width: 800px;
+}

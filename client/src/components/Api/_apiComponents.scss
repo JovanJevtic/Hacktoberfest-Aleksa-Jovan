@@ -1,0 +1,58 @@
+.meme {
+    width: 350px;
+    background: #303030;
+    margin-bottom: 30px;
+    color: #fff;
+    border-radius: 5px;
+
+    .memeHeading {
+        width: 100%;
+        min-height: 70px;
+        display: flex;
+
+        .memeTitleWrapp {
+            flex: 1;
+            display: flex;
+            align-items: center;
+
+            .memeTitle {
+                margin-left: 30px;
+                font-size: 26px;
+                font-weight: normal;
+            }
+        }
+
+        .memeDateWrapp {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .memeDate {
+                color: #d3d3d3;
+                margin-right: 30px;
+            }
+        }
+    }
+
+    .memeImageWrapp {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            max-width: 100%;
+        }
+    }        
+
+    .memeFooter {
+        min-height: 50px;
+        display: flex;
+        align-items: center;
+
+        .memeDescription {
+            margin-left: 30px;
+        }
+    }
+}

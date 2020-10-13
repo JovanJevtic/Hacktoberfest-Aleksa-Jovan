@@ -16,8 +16,11 @@
 
 .feed {
     background: $grey;
-    height: 300vh;
+    min-height: 300vh;
     grid-area: feed;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 @media screen and (max-width: 800px) {
@@ -34,7 +37,14 @@
 
     .feed {
         background: $grey;
-        height: 300vh;
+        min-height: 300vh;
+        width: 100%;
+    }
+
+    .bottomNav {
+        position: fixed;
+        bottom: 0;
+        background: red;
         width: 100%;
     }
 }
@@ -47,6 +57,10 @@
         grid-template-columns: 1fr 5fr;
         grid-template-rows: 1fr;
     }
+
+    .bottomNav {
+        display: none;
+    }
     
     .sidebar {
         height: 100vh;
@@ -58,7 +72,22 @@
     
     .feed {
         background: $grey;
-        height: 300vh;
+        min-height: 300vh;
         grid-area: feed;
     }
+}
+
+@media screen and (min-width: 1240px) {
+    .bottomNav {
+        display: none;
+    }
+}
+
+.gap {
+    height: 70px;
+}
+  
+.feedRoute {
+    height: calc(100% - 70px);
+    width: 96%;
 }
