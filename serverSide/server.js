@@ -3,8 +3,9 @@ const dotenv = require('dotenv');
 const body_parser = require('body-parser');
 const router = require('./routing/route');
 const mongoose = require('mongoose');
-const db_connection = require('./database/database');
 const path = require('path');
+const http2 = require('http2');
+const fs = require('fs');
 
 // App init
 const app = express();
@@ -29,6 +30,14 @@ if (process.env.NODE_ENV === 'production') {
   })
 }
 
+app.get('/', (req, res) => {
+  res.send('Homepage');
+});
+
+app.get('/post', (req, res) => {
+  res.send('Post');
+});
+
 // Port listening
 const PORT = process.env.PORT || 5000;
 
@@ -37,6 +46,8 @@ app.listen(PORT, (err) => {
     console.log('There was an error');
     process.exit(1);
   }
+  
+  console.log('Connected successfuly!');
   
   // Database connection
   require('./database/database');
