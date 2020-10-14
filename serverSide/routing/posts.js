@@ -31,14 +31,7 @@ const upload = multer({
 const Post = require('../models/Post');
 
 //? GET ALL POSTS; /posts - GET
-router.get('/', async (req, res) => {
-  try {
-    const posts = await Post.find();
-    res.json(posts);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.get('/', postController.getPost);
 
 
 //? POST A POST; /posts - POST
@@ -58,36 +51,15 @@ router.post('/', upload.single('memeImage'), async (req, res) => {
 
 
 //? DELETE SINGLE POST; /posts/:id - DELETE
-router.delete('/:id', getPost, async (req, res) => {
-  try {
-    await res.post.remove();
-    res.json({ message: 'Sucessfully deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+router.delete('/', postController.deletePost);
 
 
 //? GET SINGLE POST; /posts/:id - GET
-router.get('/:id', getPost, (req, res) => {
-  res.json(res.post);
-});
+router.get('/', postController.getSinglePost);
 
 
 //? UPDATING POST; /posts/:id - PATCH
-router.patch('/:id', getPost, async (req, res) => {
-  if (req.body.title != null) {
-    res.post.title = req.body.title
-    req.body.description = req.body.description
-    req.body.img_src
-  }
-  try {
-    const updatedPost = await res.post.save();
-    res.json(updatedPost);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
-})
+router.patch('/', postController.patchPost);
 
 
 //? FINDING POST BY ID FUNCTION 
