@@ -54,12 +54,12 @@ const patchPost = ('/:id', getPost, async (req, res) => {
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
-})
+});
 
 module.exports = {
   postPost: postPost,
   getPost: getPost,
   deletePost: deletePost,
   getSinglePost: getSinglePost,
-  patchPost: patchPost,
+  patchPost: patchPost
 };

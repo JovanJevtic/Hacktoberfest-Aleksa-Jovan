@@ -4,8 +4,6 @@ const body_parser = require('body-parser');
 const router = require('./routing/route');
 const mongoose = require('mongoose');
 const path = require('path');
-const http2 = require('http2');
-const fs = require('fs');
 
 // App init
 const app = express();
