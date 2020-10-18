@@ -18,7 +18,7 @@ const UploadForm = () => {
         fd.append('file', file)
 
         try {
-            const res = await axios.post('https://memeit-aj.herokuapp.com/api/posts', fd, {
+            const res = await axios.post('http://localhost:5000/api/posts', fd, {
                 header: {
                     'Content-Type': 'multipart/form-data'
                 }
