@@ -1,6 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const cors = require('cors')
+
+
+const corsOptions = {
+  origin: 'https://memeit-aj.herokuapp.com',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
 
 const postController = require('../controllers/route')
 
@@ -45,7 +52,7 @@ router.get('/', async (req, res) => {
 
 
 //? POST A POST; /posts - POST
-router.post('/', upload.single('memeImage'), async (req, res) => {
+router.post('/', cors(corsOptions), upload.single('memeImage'), async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
