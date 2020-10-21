@@ -52,7 +52,7 @@ router.get('/', async (req, res) => {
 
 
 //? POST A POST; /posts - POST
-router.post('/', cors(corsOptions), upload.single('memeImage'), async (req, res) => {
+router.post('/', cors(), upload.single('memeImage'), async (req, res) => {
   const post = new Post({
     title: req.body.title,
     description: req.body.description,
@@ -62,7 +62,7 @@ router.post('/', cors(corsOptions), upload.single('memeImage'), async (req, res)
     const newPost = await post.save()
     res.status(201).json(newPost);
   } catch (err) {
-    res.status(400).json({ message: err.message });
+    res.status(400).json({ message: 'Kurac radi' });
   }
 });
 

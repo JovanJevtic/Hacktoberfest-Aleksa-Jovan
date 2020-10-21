@@ -6,16 +6,21 @@ const UploadForm = () => {
     const [file, setFile] = useState('')
     const [filename, setFilename] = useState('Choose File')
     const [uploadedFile, setUploadedFile] = useState({})
+    const [title, setTitle] = useState('')
 
     const onFileChange = e => {
         setFile(e.target.files[0])
         setFilename(e.target.files[0].name)
     }
 
+    const onTitleChange = e => {
+        setTitle(e.target.value)
+    }
+
     const onFormSubmit = async e => {
         e.preventDefault()
         const fd = new FormData()
-        fd.append('memeImage', file)
+        fd.append('memeImage', file, title)
 
         try {
             const res = await axios.post('http://localhost:5000/api/posts', fd, {
@@ -40,6 +45,10 @@ const UploadForm = () => {
                     <label htmlFor="imageFile">
                         { filename }
                     </label>
+                </div>
+
+                <div className="txtInputGroupt">
+                    <input onChange={onTitleChange} value={title} type="text" />
                 </div>
 
                 <button type="submit">Submit</button>
