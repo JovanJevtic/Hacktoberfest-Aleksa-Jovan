@@ -1,6 +1,7 @@
 require('../routing/posts');
 const Post = require('../models/Post');
 const multer = require('multer');
+const { remove } = require('../models/Post');
 
 //* Getting all posts
 const postsGetAll = async (req, res, next) => {
@@ -29,34 +30,7 @@ const getSinglePost = async (req, res, next) => {
   }
 }
 
-
-//* Creating a post
-  //? Multer setup
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-    cb(null, './uploads');
-  },
-  filename: function(req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  }
-});  
-  
-const fileFilter = (req, file, cb) => {
-  if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-    cb(null, true);
-  } else {
-    cb(null, false);
-  }
-}
-  
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 1024 * 1024 * 4
-  },
-  fileFilter: fileFilter
-});
-  
+//* Creating a post  
 const createPost = async (req, res, next) => {
   const post = new Post({
     title: req.body.title,
@@ -73,13 +47,47 @@ const createPost = async (req, res, next) => {
 } 
 
 //* Updating a post
+const updatePost = async (req, res, next) => {
+  const {
+    title,
+    description,
+  } = req.body;
+
+  const post = await Post.findById(req.params.id);
+
+  if (post) {
+    post.title = title;
+    post.description = description;
+    
+    const updatedPost = await post.save();
+    res.json(updatedPost);
+  } else {
+    res.status(404).json({ message: 'The post you are looking for does not exist' });
+  }
+}
 
 //* Deleting a post
+const removePost = async (req, res, next) => {
+  const post = await Post.findById(req.params.id);
+
+  if (post) {
+    try {
+      await post.remove();
+      res.json({ message: 'Sucessfully deleted' });
+    } catch(err) {
+      res.status(500).json({ message: err.message });
+    }
+  } else {
+    res.status(404).json({ message: 'The post you are looking for does not exist' });
+  }
+}
 
 
 //? Controllers export 
 module.exports = {
   postsGetAll: postsGetAll,
   getSinglePost: getSinglePost,
-  createPost: createPost
+  createPost: createPost,
+  updatePost: updatePost,
+  deletePost: removePost
 }

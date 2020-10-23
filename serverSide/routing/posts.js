@@ -44,6 +44,11 @@ router.get('/:id', PostController.getSinglePost);
 //* Creating a post
 router.post('/', upload.single('memeImage'), PostController.createPost);
 
+//* Updating a post
+router.patch('/:id', PostController.updatePost);
+
+//* Delete a post
+router.delete('/:id', PostController.deletePost);
 
 
 module.exports = router;
